@@ -26,21 +26,24 @@ def get_spectre():
         #get root mean square of fft by intervals [0..32] (32..64] .. (4096..22050]
         for i in range(0, 8):
             tmp = f[np.where((mark > freq) & (freq >= mark / 2.0))] ** 2
-            vals[i] += (np.sum(tmp) / len(tmp)) ** 0.5
+            l = max(1, len(tmp))
+            vals[i] += (np.sum(tmp) / l) ** 0.5
             if i == 0:
                 tmp = f[np.where(freq <= mark/2.0)] ** 2
-                vals[i] += (np.sum(tmp) / len(tmp)) ** 0.5
+                l = max(1, len(tmp))
+                vals[i] += (np.sum(tmp) / l) ** 0.5
             elif i == 7:
                 tmp = f[np.where(freq > mark)] ** 2
-                vals[i] += (np.sum(tmp) / len(tmp)) ** 0.5
+                l = max(1, len(tmp))
+                vals[i] += (np.sum(tmp) / l) ** 0.5
             mark *= 2
 
         #get log10 of RMS of intervals
         v1 = np.log10(vals + 1)
 
         #get normalized output for indepedence from input volume level
-        max = np.max(v1)
-        v1 = v1 / (max + 0.0001) * magic
+        v_max = np.max(v1)
+        v1 = v1 / (v_max + 0.0001) * magic
 
         #logistic transform for large dynamic range
         v2 = np.exp(r * (v1 - x))
