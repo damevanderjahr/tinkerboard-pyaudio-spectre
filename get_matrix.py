@@ -20,7 +20,7 @@ def get_matrix():
             #compute saturation and value for hsv color model
             s_l = s[7 - i % m] * 20 if s[7 - i % m] > (i // m) else 0
             s_l = s_l if s_l < 100 else 100
-            v = np.exp((s_l - 20) / 30)
+            v = np.exp((s_l - 20) / 50)
             #transform hsv to rgb model
             r, g, b = hsv_to_rgb(h[i // m], s_l, v)
             try:
