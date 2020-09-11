@@ -1,0 +1,8 @@
+#[Unit]
+#After=
+
+[Service]
+ExecStart=/usr/local/bin/clear-matrix.sh
+
+[Install]
+WantedBy=default.target

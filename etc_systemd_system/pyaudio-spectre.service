@@ -1,0 +1,8 @@
+#[Unit]
+#After=
+
+[Service]
+ExecStart=/usr/local/bin/pyaudio-spectre.sh
+
+[Install]
+WantedBy=default.target
