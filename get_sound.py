@@ -1,9 +1,10 @@
 import pyaudio
 import numpy as np
 
-#get <chunk> samples from stream
-#stream is monitor of default output
-#errors are from PyAudio.__init__
+
+# get <chunk> samples from stream
+# stream is monitor of default output
+# errors are from PyAudio.__init__
 def get_level():
     FORMAT = pyaudio.paInt16
     CHANNELS = 1

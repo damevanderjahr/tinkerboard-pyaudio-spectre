@@ -2,11 +2,12 @@ from color_transform import *
 from get_matrix import *
 import spidev
 
-#original code and instructions:
-#https://tinkerboarding.co.uk/wiki/index.php/Waveshare-Expansions
-#https://tinkerboarding.co.uk/wiki/images/5/5d/TB_sample_code.7z
+# original code and instructions:
+# https://tinkerboarding.co.uk/wiki/index.php/Waveshare-Expansions
+# https://tinkerboarding.co.uk/wiki/images/5/5d/TB_sample_code.7z
 
-#transform byte to bits sequence
+
+# transform byte to bits sequence
 def byte2bits(byte):
     b0 = 0x1
     b1 = 0x7
@@ -16,11 +17,13 @@ def byte2bits(byte):
         mask >>= 1
     return bits
 
-#transform rgb colors to bits sequence
+
+# transform rgb colors to bits sequence
 def SetLedColor(red, green, blue):
     byte2bits(green)
     byte2bits(red)
     byte2bits(blue)
+
 
 spi = spidev.SpiDev()
 spi.open(2, 0)
@@ -36,11 +39,11 @@ try:
     bits = []
     while True:
         m = matrix.__next__()
-        #transform color matrix to spi bits sequence
+        # transform color matrix to spi bits sequence
         for i in range(0, led_cnt):
             (r, g, b) = m[i // k][i % k]
             SetLedColor(r, g, b)
-        #send bits sequence to spi interface pin
+        # send bits sequence to spi interface pin
         spi.xfer(bits)
         bits = []
 except KeyboardInterrupt:

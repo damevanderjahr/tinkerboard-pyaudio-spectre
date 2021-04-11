@@ -1,6 +1,7 @@
 import math
 
-#color transform from HSV to RGB sheme
+
+# color transform from HSV to RGB scheme
 def hsv_to_rgb(h, s, v):
     h_i = math.floor(h / 60.0) % 6
     v_min = (100 - s) * v // 100
